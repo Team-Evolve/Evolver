@@ -9,7 +9,9 @@ namespace evolver
 	class Camera
 	{
 	public:
-		Camera(int width, int height, glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 3.0f), float fov = 45.0f);
+		Camera(int width, int height,
+			glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 3.0f),
+			float fov = 45.0f);
 
 		void MouseInput(double xpos, double ypos);
 		void ScrollInput(double xoffset, double yoffset);

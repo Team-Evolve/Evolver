@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<Shader>
+	<baseShader filename="wololo" compiled_name="wololo_c" />
+</Shader>
+<Model>
+	<main_model filename="model" count="120" />
+</Model>
+<Texture>
+	<albedo filename="albedo_tex" width="120" height="120" channel="3" />
+</Texture>
+<IntValue value="10" />
+<Deneme value="deneme" />
+<TestVec2 x="3" y="4.30000019" />
+<TestVec3 x="3" y="23" z="3" />
+<TestVec4 x="3.20000005" y="312.119995" z="32" w="2342" />

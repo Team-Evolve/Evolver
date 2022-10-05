@@ -1,6 +1,6 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#include <stb_image_write.h>
+#include <stb-image/stb_image_write.h>
 #include "../include/Debug.h"
 #include <iostream>
 

@@ -21,12 +21,6 @@ namespace evolver
 		{
 			document.load_file(currentXMLFile.string().c_str());
 		}
-		else
-		{
-			baseShaderNode = document.append_child("Shader");
-			baseModelNode = document.append_child("Model");
-			baseTextureNode = document.append_child("Texture");
-		}
 	}
 
 	void XMLManager::Save()
@@ -78,6 +72,11 @@ namespace evolver
 
 	void XMLManager::AddShaderInfo(const char* nodeName, const char* filename, const char* compiledname)
 	{
+		if (!baseShaderNode)
+		{
+			baseShaderNode = document.append_child("Shader");
+		}
+
 		node = baseShaderNode.append_child(nodeName);
 
 		attribute = node.append_attribute("filename");
@@ -89,6 +88,11 @@ namespace evolver
 
 	void XMLManager::AddModelInfo(const char* nodeName, const char* filename, int count)
 	{
+		if (!baseModelNode)
+		{
+			baseModelNode = document.append_child("Model");
+		}
+
 		node = baseModelNode.append_child(nodeName);
 
 		attribute = node.append_attribute("filename");
@@ -100,6 +104,11 @@ namespace evolver
 
 	void XMLManager::AddTextureInfo(const char* nodeName, const char* filename, int width, int height, int channel)
 	{
+		if (!baseTextureNode)
+		{
+			baseTextureNode = document.append_child("Texture");
+		}
+
 		node = baseTextureNode.append_child(nodeName);
 
 		attribute = node.append_attribute("filename");

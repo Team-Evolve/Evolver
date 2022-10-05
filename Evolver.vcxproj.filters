@@ -19,16 +19,13 @@
     <Filter Include="Source Files\Source">
       <UniqueIdentifier>{d5e0010f-59c9-4d18-a7f4-48662aa65d7b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\thirdparty\IMGUI">
+      <UniqueIdentifier>{2bbf9bbe-48f8-4b3a-bd6e-cfbe4ef9e3b0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="thirparty-sources\glad.c">
-      <Filter>Source Files\thirdparty</Filter>
-    </ClCompile>
-    <ClCompile Include="thirparty-sources\pugixml.cpp">
-      <Filter>Source Files\thirdparty</Filter>
     </ClCompile>
     <ClCompile Include="source\Buffer.cpp">
       <Filter>Source Files\Source</Filter>
@@ -48,11 +45,32 @@
     <ClCompile Include="source\XMLManager.cpp">
       <Filter>Source Files\Source</Filter>
     </ClCompile>
+    <ClCompile Include="third-party\pugixml\pugixml.cpp">
+      <Filter>Source Files\thirdparty</Filter>
+    </ClCompile>
+    <ClCompile Include="third-party\glad\glad.c">
+      <Filter>Source Files\thirdparty</Filter>
+    </ClCompile>
+    <ClCompile Include="third-party\imgui\imgui_draw.cpp">
+      <Filter>Source Files\thirdparty\IMGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="third-party\imgui\imgui_widgets.cpp">
+      <Filter>Source Files\thirdparty\IMGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="third-party\imgui\imgui.cpp">
+      <Filter>Source Files\thirdparty\IMGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="third-party\imgui\backends\imgui_impl_opengl3.cpp">
+      <Filter>Source Files\thirdparty\IMGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="third-party\imgui\backends\imgui_impl_glfw.cpp">
+      <Filter>Source Files\thirdparty\IMGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="third-party\imgui\imgui_tables.cpp">
+      <Filter>Source Files\thirdparty\IMGUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="thirparty-sources\pugixml.hpp">
-      <Filter>Source Files\thirdparty</Filter>
-    </ClInclude>
     <ClInclude Include="include\Buffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -72,6 +90,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Debug.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Compute.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

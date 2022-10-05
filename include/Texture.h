@@ -3,8 +3,8 @@
 #include <iostream>
 #include <vector>
 #include <map>
-#include <stb_image.h>
-#include <stb_image_write.h>
+#include <stb-image/stb_image.h>
+#include <stb-image/stb_image_write.h>
 #include <glad/glad.h>
 
 namespace evolver

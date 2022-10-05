@@ -3,8 +3,13 @@
 
 #include <iostream>
 
+#ifdef _DEBUG
 #define LOG_INFO(message) LogInfo(message, __LINE__, __FILE__, __TIME__)
 #define LOG_ERROR(message) LogError(message, __LINE__, __FILE__, __TIME__)
+#else
+#define LOG_INFO(message)
+#define LOG_ERROR(message)
+#endif
 
 inline std::string GetColoredInfo(std::string msg)
 {

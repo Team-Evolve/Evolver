@@ -50,41 +50,35 @@ namespace evolver
 		int width, height, channel;
 		unsigned char* tex = stbi_load(textureFilename.c_str(), &width, &height, &channel, 0);
 
-		if (tex)
+		if (!tex)
 		{
-			GLenum texFormat = GetTexFormat(channel);
-
-			glBindTexture(GL_TEXTURE_2D, temp2D);
-			glTexImage2D(GL_TEXTURE_2D, 0, texFormat, width, height, 0, texFormat, GL_UNSIGNED_BYTE, tex);
-			glGenerateMipmap(GL_TEXTURE_2D);
-
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-			if (_width != nullptr && _height != nullptr)
-			{
-				*_width = width;
-				*_height = height;
-			}
-
-#if _DEBUG
-			std::cout << "Texture " << textureName << "loaded\n";
-#endif
-
-			stbi_image_free(tex);
-
-			tex2DMap.insert({ textureName, temp2D });
-		}
-		else
-		{
-#if _DEBUG
-			std::cout << "Can't Load Texture " << textureName << "\n";
-#endif
+			LOG_ERROR("Can't Load Texture " + textureName);
 
 			return;
 		}
+
+		GLenum texFormat = GetTexFormat(channel);
+
+		glBindTexture(GL_TEXTURE_2D, temp2D);
+		glTexImage2D(GL_TEXTURE_2D, 0, texFormat, width, height, 0, texFormat, GL_UNSIGNED_BYTE, tex);
+		glGenerateMipmap(GL_TEXTURE_2D);
+
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+		if (_width != nullptr && _height != nullptr)
+		{
+			*_width = width;
+			*_height = height;
+		}
+			
+		LOG_INFO("Texture " + textureName + "loaded");
+
+		stbi_image_free(tex);
+
+		tex2DMap.insert({ textureName, temp2D });
 	}
 
 	void Texture::LoadCubemap(std::vector<std::string> faces, const std::string cubemapName)
@@ -95,33 +89,27 @@ namespace evolver
 		glBindTexture(GL_TEXTURE_CUBE_MAP, tempCubemap);
 
 		int width, height, nrChannels;
+		unsigned char* data = nullptr;
 		for (unsigned int i = 0; i < faces.size(); i++)
 		{
-			unsigned char* data = stbi_load(faces[i].c_str(), &width, &height, &nrChannels, 0);
+			data = stbi_load(faces[i].c_str(), &width, &height, &nrChannels, 0);
 
-			if (data)
+			if (!data)
 			{
-				GLenum texFormat = GetTexFormat(nrChannels);
-				glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, texFormat, width, height, 0, texFormat, GL_UNSIGNED_BYTE, data);
-#if _DEBUG
-				std::cout << "Texture For Cubemap " << faces[i] << " Loaded\n";
-#endif
-				stbi_image_free(data);
-			}
-			else
-			{
-#if _DEBUG
-				std::cout << "Cant Load Texture For Cubemap " << faces[i] << "\n";
-#endif
-				stbi_image_free(data);
+				LOG_ERROR("Cant Load Texture For Cubemap " + faces[i]);
 
 				return;
 			}
+
+			GLenum texFormat = GetTexFormat(nrChannels);
+			glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, texFormat, width, height, 0, texFormat, GL_UNSIGNED_BYTE, data);
+
+			LOG_INFO("Texture For Cubemap " + faces[i] + " Loaded");
+
+			stbi_image_free(data);
 		}
 
-#if _DEBUG
-		std::cout << cubemapName << " Loaded\n";
-#endif
+		LOG_INFO(cubemapName + " Loaded");
 
 		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
@@ -138,33 +126,27 @@ namespace evolver
 		int width, height, nrComponents;
 		float* data = stbi_loadf(hdrFilename.c_str(), &width, &height, &nrComponents, 0);
 
-		if (data)
+		if (!data)
 		{
-			glGenTextures(1, &tempHDR);
-			glBindTexture(GL_TEXTURE_2D, tempHDR);
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB16F, width, height, 0, GL_RGB, GL_FLOAT, data);
-
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-#if _DEBUG
-			std::cout << "Texture " << hdrName << "loaded\n";
-#endif
-
-			stbi_image_free(data);
-
-			texHDRMap.insert({ hdrName, tempHDR });
-		}
-		else
-		{
-#if _DEBUG
-			std::cout << "Can't Load Texture " << hdrName << "\n";
-#endif
+			LOG_ERROR("Can't Load Texture " + hdrName);
 
 			return;
 		}
+
+		glGenTextures(1, &tempHDR);
+		glBindTexture(GL_TEXTURE_2D, tempHDR);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB16F, width, height, 0, GL_RGB, GL_FLOAT, data);
+
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+		LOG_INFO("Texture " + hdrName + "loaded\n");
+
+		stbi_image_free(data);
+
+		texHDRMap.insert({ hdrName, tempHDR });
 	}
 
 	void Texture::Bind(const std::string name, const unsigned int location, EV_TexType texType)
@@ -231,9 +213,7 @@ namespace evolver
 
 		stbi_write_png(path.c_str(), width, height, channel, ptr, 0);
 
-#if _DEBUG
-		std::cout << name << " saved to " << path << "\n";
-#endif
+		LOG_INFO(name + " saved to " + path);
 
 		free(ptr);
 	}

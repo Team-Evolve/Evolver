@@ -6,6 +6,7 @@
 #include <stb-image/stb_image.h>
 #include <stb-image/stb_image_write.h>
 #include <glad/glad.h>
+#include "Debug.h"
 
 namespace evolver
 {

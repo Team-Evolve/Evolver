@@ -146,6 +146,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="source\Buffer.cpp" />
     <ClCompile Include="source\Camera.cpp" />
+    <ClCompile Include="source\Mesh.cpp" />
     <ClCompile Include="source\Shader.cpp" />
     <ClCompile Include="source\Texture.cpp" />
     <ClCompile Include="source\Window.cpp" />
@@ -164,6 +165,7 @@
     <ClInclude Include="include\Camera.h" />
     <ClInclude Include="include\Compute.h" />
     <ClInclude Include="include\Debug.h" />
+    <ClInclude Include="include\Mesh.h" />
     <ClInclude Include="include\Shader.h" />
     <ClInclude Include="include\Texture.h" />
     <ClInclude Include="include\Window.h" />

@@ -36,6 +36,7 @@ namespace evolver
 		~Mesh();
 
 		void Draw();
+		void Cleanup();
 
 	private:
 		void SetupMesh();

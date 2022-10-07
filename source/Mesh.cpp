@@ -20,10 +20,6 @@ namespace evolver
 
 	Mesh::~Mesh()
 	{
-		size_vertex = 0;
-		size_indices = 0;
-		size_texture = 0;
-
 		if (VAO)
 		{
 			glDeleteVertexArrays(1, &VAO);
@@ -38,10 +34,6 @@ namespace evolver
 		{
 			glDeleteBuffers(1, &EBO);
 		}
-
-		vertexAttributes.release();
-		indices.release();
-		textureAttributes.release();
 	}
 
 	void Mesh::Draw()
@@ -89,5 +81,16 @@ namespace evolver
 		glEnableVertexAttribArray(4);
 
 		glBindVertexArray(0);
+	}
+
+	void Mesh::Cleanup()
+	{
+		size_vertex = 0;
+		size_indices = 0;
+		size_texture = 0;
+
+		vertexAttributes.release();
+		indices.release();
+		textureAttributes.release();
 	}
 }

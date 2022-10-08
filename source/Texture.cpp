@@ -40,7 +40,7 @@ namespace evolver
 		}
 	}
 
-	void Texture::Load2D(const std::string textureFilename, const std::string textureName, int* _width, int* _height)
+	void Texture::Load2D(const std::string& textureFilename, const std::string& textureName, int* _width, int* _height)
 	{
 		unsigned int temp2D;
 		glGenTextures(1, &temp2D);
@@ -81,7 +81,7 @@ namespace evolver
 		tex2DMap.insert({ textureName, temp2D });
 	}
 
-	void Texture::LoadCubemap(std::vector<std::string> faces, const std::string cubemapName)
+	void Texture::LoadCubemap(std::vector<std::string>& faces, const std::string& cubemapName)
 	{
 		unsigned int tempCubemap;
 
@@ -120,7 +120,7 @@ namespace evolver
 		texCubemapMap.insert({ cubemapName, tempCubemap });
 	}
 
-	void Texture::LoadHDR(const std::string hdrFilename, const std::string hdrName)
+	void Texture::LoadHDR(const std::string& hdrFilename, const std::string& hdrName)
 	{
 		unsigned int tempHDR;
 		int width, height, nrComponents;
@@ -149,7 +149,7 @@ namespace evolver
 		texHDRMap.insert({ hdrName, tempHDR });
 	}
 
-	void Texture::Bind(const std::string name, const unsigned int location, EV_TexType texType)
+	void Texture::Bind(const std::string& name, const unsigned int location, EV_TexType texType)
 	{
 		switch (texType)
 		{
@@ -168,22 +168,22 @@ namespace evolver
 		}
 	}
 
-	unsigned int Texture::GetTexture2DID(const std::string name)
+	unsigned int Texture::GetTexture2DID(const std::string& name)
 	{
 		return tex2DMap[name];
 	}
 
-	unsigned int Texture::GetCubemapID(const std::string name)
+	unsigned int Texture::GetCubemapID(const std::string& name)
 	{
 		return texCubemapMap[name];
 	}
 
-	unsigned int Texture::GetHDRTextureID(const std::string name)
+	unsigned int Texture::GetHDRTextureID(const std::string& name)
 	{
 		return texHDRMap[name];
 	}
 
-	void Texture::SaveTexture2D(const std::string name, const int location, const std::string path, const int width, const int height, GLenum format, GLenum type)
+	void Texture::SaveTexture2D(const std::string& name, const int location, const std::string& path, const int width, const int height, GLenum format, GLenum type)
 	{
 		stbi_flip_vertically_on_write(true);
 

@@ -11,13 +11,13 @@
 #define LOG_ERROR(message)
 #endif
 
-inline std::string GetColoredInfo(std::string msg)
+inline std::string GetColoredInfo(const std::string& msg)
 {
 	std::string toReturn("\u001b[44;1m" + msg + "\u001b[0m");
 	return toReturn;
 }
 
-inline std::string GetColoredError(std::string msg)
+inline std::string GetColoredError(const std::string& msg)
 {
 	std::string toReturn("\u001b[41;1m" + msg + "\u001b[0m");
 	return toReturn;

@@ -17,7 +17,7 @@ namespace evolver
 		std::filesystem::remove(filepath);
 	}
 
-	void File::CopyTo(std::string path)
+	void File::CopyTo(const std::string& path)
 	{
 		std::filesystem::path tempPath(path);
 		std::filesystem::copy_file(filepath, path);
@@ -25,7 +25,7 @@ namespace evolver
 		filepath.assign(path);
 	}
 
-	void File::Rename(std::string newName)
+	void File::Rename(const std::string& newName)
 	{
 		std::filesystem::path tempPath(newName);
 		std::filesystem::rename(filepath, tempPath);
@@ -33,8 +33,13 @@ namespace evolver
 		filepath.assign(newName);
 	}
 	
-	const char* File::GetPath()
+	const char* File::GetConstChar()
 	{
 		return (filepath.string().c_str());
+	}
+
+	inline std::string File::GetString()
+	{
+		return (filepath.string());
 	}
 }

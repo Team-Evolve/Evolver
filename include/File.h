@@ -16,9 +16,11 @@ namespace evolver
 
 		bool Exists();
 		void Remove();
-		void CopyTo(std::string path);
-		void Rename(std::string newName);
-		const char* GetPath();
+		void CopyTo(const std::string& path);
+		void Rename(const std::string& newName);
+		
+		inline const char* GetConstChar();
+		inline std::string GetString();
 
 	private:
 		std::filesystem::path filepath;

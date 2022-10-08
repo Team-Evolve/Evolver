@@ -3,6 +3,7 @@
 int main()
 {
 	evolver::Window window(1280, 720);
+	window.SetWindowAtCenter();
 
 	LOG_INFO("Window Initialized");
 

@@ -1,5 +1,8 @@
 #pragma once
 
+#include "Debug.h"
+#include "File.h"
+
 #include <iostream>
 #include <cstring>
 #include <fstream>
@@ -16,7 +19,7 @@ namespace evolver
 	{
 	public:
 		Shader();
-		Shader(std::vector<std::string> files);
+		Shader(std::vector<std::string>& files);
 		~Shader();
 
 		void Load();
@@ -25,10 +28,10 @@ namespace evolver
 		void Reset();
 
 	private:
-		GLenum GetShaderType(std::string file);
-		GLuint CompileShader(std::string file, GLenum shaderType);
-		void LinkProgram(std::vector<std::string> shaderFiles);
-		std::string GetShaderString(std::string file);
+		GLenum GetShaderType(const std::string& file);
+		GLuint CompileShader(const std::string& file, GLenum shaderType);
+		void LinkProgram(std::vector<std::string>& shaderFiles);
+		std::string GetShaderString(const std::string& file);
 
 		GLint GetUniformLocation(const std::string& name);
 

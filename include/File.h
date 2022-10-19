@@ -7,7 +7,7 @@ namespace evolver
 	class File
 	{
 	public:
-		File() = delete;
+		File() = default;
 		File(std::string path);
 		File(const File& other) = delete;
 		File(File&& other) = delete;
@@ -21,6 +21,37 @@ namespace evolver
 		
 		inline const char* GetConstChar();
 		inline std::string GetString();
+		inline void Reset() { filepath = ""; }
+
+		void operator+=(std::string& addPath)
+		{
+			filepath += addPath;
+		}
+
+		void operator+=(File& addPath)
+		{
+			filepath += (addPath.GetString());
+		}
+
+		void operator+=(const char* addPath)
+		{
+			filepath += addPath;
+		}
+
+		void operator=(const char* name)
+		{
+			filepath = name;
+		}
+
+		void operator=(std::string& name)
+		{
+			filepath = name;
+		}
+
+		void operator=(File& name)
+		{
+			filepath = name.GetString();
+		}
 
 	private:
 		std::filesystem::path filepath;

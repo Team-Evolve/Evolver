@@ -6,9 +6,40 @@ namespace evolver
 
 	Shader::~Shader() { glDeleteProgram(programID); }
 
-	Shader::Shader(std::vector<std::string>& files)
+	Shader::Shader(std::vector<std::string>& files, std::string name)
 	{
-		LinkProgram(files);
+		if (!std::filesystem::exists("shaders/cache"))
+		{
+			std::filesystem::create_directory("shaders/cache");
+		}
+
+		shaderFile = "shaders/cache/";
+		shaderFile += name;
+
+		if (std::strstr(shaderFile.c_str(), ".bin"))
+		{
+			shaderFile += ".bin";
+		}
+
+		GLint formats = 0;
+		glGetIntegerv(GL_NUM_PROGRAM_BINARY_FORMATS, &formats);
+
+		if (formats > 0)
+		{
+			if (std::filesystem::exists(shaderFile))
+			{
+				LoadCompiledShader();
+			}
+			else
+			{
+				LinkProgram(files);
+				SaveCompiledShader();
+			}			
+		}
+		else
+		{
+			LinkProgram(files);
+		}
 	}
 
 	void Shader::Load() { glUseProgram(programID); }
@@ -24,6 +55,77 @@ namespace evolver
 
 	// ----------------------------------------------------------------------------------------------------------------
 	// -- Creating & Compiling Shader
+
+	void Shader::SaveCompiledShader()
+	{
+		GLint length = 0;
+		glGetProgramiv(programID, GL_PROGRAM_BINARY_LENGTH, &length);
+
+		std::vector<GLubyte> buffer(length);
+		glGetProgramBinary(programID, length, NULL, &binaryFormat, buffer.data());
+
+		std::ofstream formatFile("shaders/cache/format.txt");
+		formatFile << binaryFormat;
+		formatFile.close();
+
+		std::ofstream out(shaderFile.c_str(), std::ios::binary);
+		out.write(reinterpret_cast<char*>(buffer.data()), length);
+		out.close();
+	}
+
+	void Shader::LoadCompiledShader()
+	{
+		programID = glCreateProgram();
+
+		if (!std::filesystem::exists("shaders/cache/format.txt"))
+		{
+			return;
+		}
+
+		std::ifstream formatFile("shaders/cache/format.txt");
+		formatFile >> binaryFormat;
+		formatFile.close();
+
+		std::ifstream inputStream(shaderFile.c_str(), std::ios::binary);
+		std::istreambuf_iterator<char> startIt(inputStream), endIt;
+		std::vector<char> buffer(startIt, endIt);
+		inputStream.close();
+
+		glProgramBinary(programID, binaryFormat, buffer.data(), buffer.size());
+		CheckShaderProgram(programID);
+	}
+
+	void Shader::CheckShaderProgram(unsigned int program)
+	{
+		int success;
+		char infoLog[512];
+		glGetProgramiv(program, GL_LINK_STATUS, &success);
+
+		if (success)
+		{
+			return;
+		}
+
+		LOG_ERROR("Program Cant Loaded Successfully");
+		glGetProgramInfoLog(program, 512, NULL, infoLog);
+		std::cout << "::Program ERROR::\n" << infoLog << "\n";
+	}
+
+	void Shader::CheckShader(unsigned int shader)
+	{
+		int success;
+		char infoLog[512];
+		glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
+
+		if (success)
+		{
+			return;
+		}
+
+		LOG_ERROR("Shader Cant Loaded Successfully");
+		glGetShaderInfoLog(shader, 512, NULL, infoLog);
+		std::cout << "::Shader ERROR::\n" << infoLog << "\n";
+	}
 
 	GLenum Shader::GetShaderType(const std::string& file)
 	{
@@ -94,6 +196,7 @@ namespace evolver
 		}
 
 		glLinkProgram(programID);
+		CheckShaderProgram(programID);
 
 		for (int i = 0; i < shaders.size(); i++)
 		{
@@ -117,6 +220,8 @@ namespace evolver
 		glShaderSource(shader, 1, codeArr, NULL);
 
 		glCompileShader(shader);
+
+		CheckShader(shader);
 
 		return shader;
 	}

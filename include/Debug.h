@@ -2,6 +2,7 @@
 #define DEBUG_H
 
 #include <iostream>
+#include <glad/glad.h>
 
 #ifdef _DEBUG
 #define LOG_INFO(message) LogInfo(message, __LINE__, __FILE__, __TIME__)

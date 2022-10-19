@@ -19,7 +19,7 @@ namespace evolver
 	{
 	public:
 		Shader();
-		Shader(std::vector<std::string>& files);
+		Shader(std::vector<std::string>& files, std::string name);
 		~Shader();
 
 		void Load();
@@ -28,6 +28,12 @@ namespace evolver
 		void Reset();
 
 	private:
+		void SaveCompiledShader();
+		void LoadCompiledShader();
+
+		void CheckShaderProgram(unsigned int program);
+		void CheckShader(unsigned int shader);
+
 		GLenum GetShaderType(const std::string& file);
 		GLuint CompileShader(const std::string& file, GLenum shaderType);
 		void LinkProgram(std::vector<std::string>& shaderFiles);
@@ -47,6 +53,9 @@ namespace evolver
 
 	private:
 		std::unordered_map<std::string, GLint> uniformMap;
+
 		unsigned int programID;
+		GLenum binaryFormat;
+		std::string shaderFile;
 	};
 }

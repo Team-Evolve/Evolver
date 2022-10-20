@@ -2,16 +2,13 @@
 
 namespace evolver
 {
-	Mesh::Mesh(std::vector<VertexBufferAttributes>& vertAttr, std::vector<unsigned int>& index, std::vector<TextureAttributes>& texAttr)
+	Mesh::Mesh(std::vector<VertexBufferAttributes>& vertAttr, std::vector<unsigned int>& index)
 	{
-		vertexAttributes = std::make_unique<VertexBufferAttributes*>(vertAttr.data());
+		vertexAttributes = std::make_unique<VertexBufferAttributes>(vertAttr.data());
 		size_vertex = vertAttr.size();
 
-		indices = std::make_unique<unsigned int*>(index.data());
+		indices = std::make_unique<unsigned int>(index.data());
 		size_indices = index.size();
-
-		textureAttributes = std::make_unique<TextureAttributes*>(texAttr.data());
-		size_texture = texAttr.size();
 
 		VAO = 0; VBO = 0; EBO = 0;
 
@@ -87,10 +84,36 @@ namespace evolver
 	{
 		size_vertex = 0;
 		size_indices = 0;
-		size_texture = 0;
 
 		vertexAttributes.release();
 		indices.release();
-		textureAttributes.release();
+	}
+
+	std::string Mesh::GetVertexAttributeString()
+	{
+		std::string temp;
+		VertexBufferAttributes vertex;
+
+		for (unsigned int i = 0; i < size_vertex; i++)
+		{
+			vertex = *(vertexAttributes.get() + i);
+
+			temp += (Vec3ToString(vertex.position) + " " + Vec3ToString(vertex.normal) + " " + Vec2ToString(vertex.textureCoordinates)
+				+ " " + Vec3ToString(vertex.tangent) + " " + Vec3ToString(vertex.bitangent) + "\n");
+		}
+
+		return temp;
+	}
+
+	std::string Mesh::GetIndexBufferString()
+	{
+		std::string temp;
+
+		for (unsigned int i = 0; i < size_indices; i++)
+		{
+			temp += std::to_string( *(indices.get() + i));
+		}
+
+		return temp;
 	}
 }

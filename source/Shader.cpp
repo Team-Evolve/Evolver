@@ -6,7 +6,7 @@ namespace evolver
 
 	Shader::~Shader() { glDeleteProgram(programID); }
 
-	Shader::Shader(std::vector<std::string>& files, std::string name)
+	Shader::Shader(std::vector<std::string> files, std::string name)
 	{
 		if (!std::filesystem::exists("shaders/cache"))
 		{

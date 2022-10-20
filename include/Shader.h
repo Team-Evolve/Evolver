@@ -19,7 +19,7 @@ namespace evolver
 	{
 	public:
 		Shader();
-		Shader(std::vector<std::string>& files, std::string name);
+		Shader(std::vector<std::string> files, std::string name);
 		~Shader();
 
 		void Load();

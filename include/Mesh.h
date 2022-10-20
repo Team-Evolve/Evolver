@@ -1,11 +1,14 @@
 #pragma once
 
-#include "Shader.h"
-
+#include "Helpers.h"
+#include <glad/glad.h>
+#include <glm/glm.hpp>
+#include <glm/gtc/type_ptr.hpp>
 #include "assimp/Importer.hpp"
 #include "assimp/scene.h"
 #include "assimp/postprocess.h"
 #include <vector>
+#include <memory>
 
 namespace evolver
 {
@@ -29,7 +32,7 @@ namespace evolver
 	{
 	public:
 		Mesh() = delete;
-		Mesh(std::vector<VertexBufferAttributes>& vertAttr, std::vector<unsigned int>& index, std::vector<TextureAttributes>& texAttr);
+		Mesh(std::vector<VertexBufferAttributes>& vertAttr, std::vector<unsigned int>& index);
 		Mesh(const Mesh& other) = delete;
 		Mesh(Mesh&& other) = delete;
 		Mesh& operator=(Mesh other) = delete;
@@ -38,14 +41,17 @@ namespace evolver
 		void Draw();
 		void Cleanup();
 
+		std::string GetVertexAttributeString();
+		std::string GetIndexBufferString();
+
 	private:
 		void SetupMesh();
 
 	private:
-		std::unique_ptr<VertexBufferAttributes*> vertexAttributes;
-		std::unique_ptr<unsigned int*> indices;
-		std::unique_ptr<TextureAttributes*> textureAttributes;
-		unsigned int size_vertex, size_indices, size_texture;
+		std::unique_ptr<VertexBufferAttributes> vertexAttributes;
+		std::unique_ptr<unsigned int> indices;
+
+		unsigned int size_vertex, size_indices;
 		unsigned int VAO, VBO, EBO;
 	};
 }

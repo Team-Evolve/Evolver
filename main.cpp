@@ -1,17 +1,14 @@
 #include "include/Window.h"
 #include "include/Shader.h"
-#include "include/File.h"
+#include "include/Model.h"
 
 int main()
 {
 	evolver::Window window(1280, 720);
 	window.SetWindowAtCenter();
-
-	std::string vertexShader = "shaders/test/test.vert";
-	std::string fragmentShader = "shaders/test/test.frag";
-	std::vector shaders = { vertexShader, fragmentShader };
-
-	evolver::Shader testShader(shaders, "test");
+	
+	evolver::Shader testShader({ "shaders/test/test.vert", "shaders/test/test.frag" }, "test");
+	evolver::Model testModel("models/test", "test");
 
 	LOG_INFO("Window Initialized");
 

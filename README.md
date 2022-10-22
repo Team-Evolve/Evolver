@@ -5,9 +5,11 @@ Using OpenGL 4.6 Compatibility, C++20, Visual Studio 2022
 
 ## Updates
 ### TODO
-- [ ] Finish Model class
+- [ ] Complete Model cache class
 - [ ] Buffer class is written but has to be looked anyway.
 ### DONE
+- [x] Added Model class
+- [x] Added Shader Cache
 - [x] Look for classes to change LOG_INFO, LOG_ERROR and use File class for file operations
 - [x] Added File class
 - [x] Added Mesh class

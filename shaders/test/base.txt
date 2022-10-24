@@ -1,0 +1,5 @@
+struct Vertex
+{
+	vec3 vertex;
+	vec2 tc;
+};

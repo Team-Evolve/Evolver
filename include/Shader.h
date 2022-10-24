@@ -19,7 +19,7 @@ namespace evolver
 	{
 	public:
 		Shader();
-		Shader(std::vector<std::string> files, std::string name);
+		Shader(std::vector<std::string> files, std::string name, bool overwrite = false);
 		~Shader();
 
 		void Load();
@@ -38,6 +38,7 @@ namespace evolver
 		GLuint CompileShader(const std::string& file, GLenum shaderType);
 		void LinkProgram(std::vector<std::string>& shaderFiles);
 		std::string GetShaderString(const std::string& file);
+		std::string LookForInclude(std::stringstream& realStream);
 
 		GLint GetUniformLocation(const std::string& name);
 

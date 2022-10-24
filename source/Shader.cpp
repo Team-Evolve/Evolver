@@ -6,7 +6,7 @@ namespace evolver
 
 	Shader::~Shader() { glDeleteProgram(programID); }
 
-	Shader::Shader(std::vector<std::string> files, std::string name)
+	Shader::Shader(std::vector<std::string> files, std::string name, bool overwrite)
 	{
 		if (!std::filesystem::exists("shaders/cache"))
 		{
@@ -16,9 +16,9 @@ namespace evolver
 		shaderFile = "shaders/cache/";
 		shaderFile += name;
 
-		if (std::strstr(shaderFile.c_str(), ".shader"))
+		if (std::strstr(shaderFile.c_str(), ".cache"))
 		{
-			shaderFile += ".shader";
+			shaderFile += ".cache";
 		}
 
 		GLint formats = 0;
@@ -26,6 +26,11 @@ namespace evolver
 
 		if (formats > 0)
 		{
+			if (overwrite && std::filesystem::exists(shaderFile))
+			{
+				std::filesystem::remove(shaderFile);
+			}
+
 			if (std::filesystem::exists(shaderFile))
 			{
 				LoadCompiledShader();
@@ -156,12 +161,21 @@ namespace evolver
 			}
 
 			std::stringstream stream;
-
 			stream << reader.rdbuf();
-
 			reader.close();
 
-			return stream.str();
+			if (strstr(stream.str().c_str(), "#include") == 0)
+			{
+				return stream.str();
+			}
+
+			std::string shaderString = LookForInclude(stream);
+
+			std::ofstream shaderFile(file);
+			shaderFile << shaderString;
+			shaderFile.close();
+
+			return shaderString;
 		}
 		catch (std::ifstream::failure e)
 		{
@@ -174,6 +188,55 @@ namespace evolver
 
 			return std::string();
 		}
+	}
+
+	std::string Shader::LookForInclude(std::stringstream& realStream)
+	{
+		std::ifstream reader;
+		reader.exceptions(std::ifstream::failbit | std::ifstream::badbit);
+
+		std::string shaderString;
+		std::stringstream includeStream;
+		std::string tempStr;
+		std::string includeFile;
+
+		size_t firstTime, lastTime;
+
+		while (std::getline(realStream, tempStr, '\n'))
+		{
+			if (strstr(tempStr.c_str(), "#include"))
+			{
+				firstTime = tempStr.find_first_of('"') + 1;
+				lastTime = tempStr.find_last_of('"');
+				includeFile = tempStr.substr(firstTime, lastTime - firstTime);
+				includeFile = "shaders/" + includeFile;
+
+				reader.open(includeFile);
+
+				if (!reader.is_open())
+				{
+					LOG_ERROR("Cannot open " + includeFile + " in shader");
+					return std::string();
+				}
+
+				includeStream << reader.rdbuf();
+				reader.close();
+
+				shaderString += (includeStream.str() + "\n\n");
+				
+				includeStream.str("");
+				includeStream.clear();
+			}
+			else
+			{
+				if (strcmp(tempStr.c_str(), "") != 0)
+				{
+					shaderString += (tempStr + "\n\n");
+				}
+			}
+		}
+
+		return shaderString;
 	}
 
 	void Shader::LinkProgram(std::vector<std::string>& shaderFiles)

@@ -2,7 +2,7 @@
 
 namespace evolver
 {
-	Model::Model(std::string path, std::string modelName)
+	Model::Model(std::string path)
 	{
 		/*
 		if (!std::filesystem::exists("models/cache"))

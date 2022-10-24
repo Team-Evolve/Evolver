@@ -11,7 +11,7 @@ namespace evolver
 	{
 	public:
 		Model() = delete;
-		Model(std::string path, std::string modelName);
+		Model(std::string path);
 		Model(const Model& other) = delete;
 		Model(Model&& other) = delete;
 		Model& operator=(Model other) = delete;

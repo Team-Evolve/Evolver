@@ -7,8 +7,8 @@ int main()
 	evolver::Window window(1280, 720);
 	window.SetWindowAtCenter();
 	
-	evolver::Shader testShader({ "shaders/test/test.vert", "shaders/test/test.frag" }, "test");
-	evolver::Model testModel("models/test/dragon.obj", "test");
+	evolver::Shader testShader({ "shaders/test/test.vert", "shaders/test/test.frag" }, "test", true);
+	evolver::Model testModel("models/test/dragon.obj");
 
 	LOG_INFO("Window Initialized");
 

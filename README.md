@@ -5,9 +5,10 @@ Using OpenGL 4.6 Compatibility, C++20, Visual Studio 2022
 
 ## Updates
 ### TODO
-- [ ] Complete Model cache class
+- [ ] Look for Compute class
 - [ ] Buffer class is written but has to be looked anyway.
 ### DONE
+- [x] Added include functionality for shaders
 - [x] Added Model class
 - [x] Added Shader Cache
 - [x] Look for classes to change LOG_INFO, LOG_ERROR and use File class for file operations
@@ -19,3 +20,5 @@ Using OpenGL 4.6 Compatibility, C++20, Visual Studio 2022
 - [x] Texture class is completed.
 - [x] Camera class is completed.
 - [x] Window class is completed.
+### NEED TO RESEARCH
+- [ ] Model cache is too slow.

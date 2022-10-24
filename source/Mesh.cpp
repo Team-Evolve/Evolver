@@ -4,11 +4,13 @@ namespace evolver
 {
 	Mesh::Mesh(std::vector<VertexBufferAttributes>& vertAttr, std::vector<unsigned int>& index)
 	{
-		vertexAttributes = std::make_unique<VertexBufferAttributes>(vertAttr.data());
 		size_vertex = vertAttr.size();
+		vertexAttributes.resize(size_vertex);
+		memcpy(vertexAttributes.data(), vertAttr.data(), size_vertex * sizeof(VertexBufferAttributes));
 
-		indices = std::make_unique<unsigned int>(index.data());
 		size_indices = index.size();
+		indices.resize(size_indices);
+		memcpy(indices.data(), index.data(), size_indices * sizeof(unsigned int));
 
 		VAO = 0; VBO = 0; EBO = 0;
 
@@ -51,11 +53,11 @@ namespace evolver
 		
 		glGenBuffers(1, &VBO);
 		glBindBuffer(GL_ARRAY_BUFFER, VBO);
-		glBufferData(GL_ARRAY_BUFFER, size_vertex * sizeVertexAttributes, &(vertexAttributes.get())[0], GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, size_vertex * sizeVertexAttributes, &(vertexAttributes[0]), GL_STATIC_DRAW);
 
 		glGenBuffers(1, &EBO);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, size_indices * sizeof(unsigned int), &(indices.get())[0], GL_STATIC_DRAW);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, size_indices * sizeof(unsigned int), &(indices[0]), GL_STATIC_DRAW);
 
 		// vertex buffer location = 0 | Position
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeVertexAttributes, (void*)0);
@@ -82,27 +84,38 @@ namespace evolver
 
 	void Mesh::Cleanup()
 	{
+		if (size_vertex != 0)
+		{
+			vertexAttributes.clear();
+		}
+
+		if (size_indices != 0)
+		{
+			indices.clear();
+		}
+	
 		size_vertex = 0;
 		size_indices = 0;
-
-		vertexAttributes.release();
-		indices.release();
 	}
 
-	std::string Mesh::GetVertexAttributeString()
+	/*
+	void Mesh::WriteVertexAttributes(std::string& filename)
 	{
+		auto file = std::fstream(filename, std::ios::out | std::ios::binary);
 		std::string temp;
 		VertexBufferAttributes vertex;
 
 		for (unsigned int i = 0; i < size_vertex; i++)
 		{
-			vertex = *(vertexAttributes.get() + i);
+			vertex = vertexAttributes[i];
 
-			temp += (Vec3ToString(vertex.position) + " " + Vec3ToString(vertex.normal) + " " + Vec2ToString(vertex.textureCoordinates)
+			temp = (Vec3ToString(vertex.position) + " " + Vec3ToString(vertex.normal) + " " + Vec2ToString(vertex.textureCoordinates)
 				+ " " + Vec3ToString(vertex.tangent) + " " + Vec3ToString(vertex.bitangent) + "\n");
+
+			file.write(temp.c_str(), temp.length());
 		}
 
-		return temp;
+		file.close();
 	}
 
 	std::string Mesh::GetIndexBufferString()
@@ -111,9 +124,10 @@ namespace evolver
 
 		for (unsigned int i = 0; i < size_indices; i++)
 		{
-			temp += std::to_string( *(indices.get() + i));
+			temp += std::to_string(indices[i]);
 		}
 
 		return temp;
 	}
+	*/
 }

@@ -16,9 +16,9 @@ namespace evolver
 		shaderFile = "shaders/cache/";
 		shaderFile += name;
 
-		if (std::strstr(shaderFile.c_str(), ".bin"))
+		if (std::strstr(shaderFile.c_str(), ".shader"))
 		{
-			shaderFile += ".bin";
+			shaderFile += ".shader";
 		}
 
 		GLint formats = 0;

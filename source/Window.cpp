@@ -52,11 +52,7 @@ namespace evolver
 
 	Window::~Window()
 	{
-		if (window != nullptr)
-		{
-			glfwDestroyWindow(window);
-			glfwTerminate();
-		}
+		Cleanup();
 	}
 
 	void Window::SetWindowAtCenter()

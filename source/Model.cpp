@@ -4,7 +4,16 @@ namespace evolver
 {
 	Model::Model(std::string path, std::string modelName)
 	{
-		if (!std::filesystem::exists(path))
+		/*
+		if (!std::filesystem::exists("models/cache"))
+		{
+			std::filesystem::create_directory("models/cache");
+		}
+
+		std::string filename = "models/cache/" + modelName;
+		
+
+		if (!CheckIfExists("models/cache", modelName.c_str()))
 		{
 			LoadModel(path);
 			SaveToCache(modelName);
@@ -13,18 +22,15 @@ namespace evolver
 		{
 			LoadFromCache(modelName);
 		}
+		*/
+		LoadModel(path);
 
 		Cleanup();
 	}
-	
-	Model::~Model()
-	{
-		Cleanup();
-	}
-	
+
 	void Model::Cleanup()
 	{
-		for (int i = 0; i < meshes.size(); i++)
+		for (unsigned int i = 0; i < meshes.size(); i++)
 		{
 			meshes[i].Cleanup();
 		}
@@ -32,12 +38,8 @@ namespace evolver
 
 	void Model::SaveToCache(std::string& modelName)
 	{
+		/*
 		if (meshes.size() == 0) return;
-
-		if (!std::filesystem::exists("models/cache"))
-		{
-			std::filesystem::create_directory("models/cache");
-		}
 
 		std::string vertexFilename;
 		std::string indexFilename;
@@ -45,17 +47,16 @@ namespace evolver
 
 		for (unsigned int i = 0; i < meshes.size(); i++)
 		{
-			vertexFilename = (modelName + "_" + std::to_string(i) + "_vertex" + ".bin");
-			indexFilename = (modelName + "_" + std::to_string(i) + "_index" + ".bin");
+			vertexFilename = (modelName + "_vertex" + "_" + std::to_string(i)  + ".model");
+			indexFilename = (modelName + "_index" + "_" + std::to_string(i)  + ".model");
 
-			out.open(vertexFilename.c_str(), std::ios::binary);
-			out.write(meshes[i].GetVertexAttributeString().c_str(), meshes[i].GetVertexAttributeString().length());
-			out.close();
+			meshes[i].WriteVertexAttributes(vertexFilename);
 
 			out.open(indexFilename.c_str(), std::ios::binary);
 			out.write(meshes[i].GetIndexBufferString().c_str(), meshes[i].GetIndexBufferString().length());
 			out.close();
 		}
+		*/
 	}
 
 	void Model::LoadFromCache(std::string& modelName)
@@ -91,13 +92,13 @@ namespace evolver
 	{
 		aiMesh* mesh = nullptr;
 
-		for (unsigned int i = 0; i < node->mNumMeshes; i++)
+		for (int i = 0; i < node->mNumMeshes; i++)
 		{
 			mesh = scene->mMeshes[node->mMeshes[i]];
 			meshes.push_back(ProcessMesh(mesh, scene));
 		}
 
-		for (unsigned int i = 0; i < node->mNumChildren; i++)
+		for (int i = 0; i < node->mNumChildren; i++)
 		{
 			ProcessNode(node->mChildren[i], scene);
 		}
@@ -166,6 +167,11 @@ namespace evolver
 		return Mesh(vertices, indices);
 	}
 	
+	Model::~Model()
+	{
+		Cleanup();
+	}
+
 	void Model::Draw()
 	{
 		for (unsigned int i = 0; i < meshes.size(); i++)

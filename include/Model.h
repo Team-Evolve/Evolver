@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Mesh.h"
+#include "Debug.h"
 #include <filesystem>
 #include <fstream>
 
@@ -20,7 +21,6 @@ namespace evolver
 
 	private:
 		void Cleanup();
-
 		void SaveToCache(std::string& modelName);
 		void LoadFromCache(std::string& modelName);
 

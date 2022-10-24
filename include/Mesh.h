@@ -8,7 +8,7 @@
 #include "assimp/scene.h"
 #include "assimp/postprocess.h"
 #include <vector>
-#include <memory>
+#include <fstream>
 
 namespace evolver
 {
@@ -31,25 +31,24 @@ namespace evolver
 	class Mesh
 	{
 	public:
-		Mesh() = delete;
+		Mesh() = default;
 		Mesh(std::vector<VertexBufferAttributes>& vertAttr, std::vector<unsigned int>& index);
-		Mesh(const Mesh& other) = delete;
-		Mesh(Mesh&& other) = delete;
-		Mesh& operator=(Mesh other) = delete;
 		~Mesh();
 
 		void Draw();
 		void Cleanup();
 
-		std::string GetVertexAttributeString();
+		/*
+		void WriteVertexAttributes(std::string& filename);
 		std::string GetIndexBufferString();
+		*/
 
 	private:
 		void SetupMesh();
 
 	private:
-		std::unique_ptr<VertexBufferAttributes> vertexAttributes;
-		std::unique_ptr<unsigned int> indices;
+		std::vector<VertexBufferAttributes> vertexAttributes;
+		std::vector<unsigned int> indices;
 
 		unsigned int size_vertex, size_indices;
 		unsigned int VAO, VBO, EBO;

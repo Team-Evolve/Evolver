@@ -134,16 +134,12 @@ namespace evolver
 
 	GLenum Shader::GetShaderType(const std::string& file)
 	{
-		if (std::strstr(file.c_str(), ".vert"))
-			return GL_VERTEX_SHADER;
-		else if (std::strstr(file.c_str(), ".tecs"))
-			return GL_TESS_CONTROL_SHADER;
-		else if (std::strstr(file.c_str(), ".teval"))
-			return GL_TESS_EVALUATION_SHADER;
-		else if (std::strstr(file.c_str(), ".geom"))
-			return GL_GEOMETRY_SHADER;
-		else if (std::strstr(file.c_str(), ".frag"))
-			return GL_FRAGMENT_SHADER;
+		if (std::strstr(file.c_str(), ".vert"))			return GL_VERTEX_SHADER;
+		else if (std::strstr(file.c_str(), ".tecs"))		return GL_TESS_CONTROL_SHADER;
+		else if (std::strstr(file.c_str(), ".teval"))	return GL_TESS_EVALUATION_SHADER;
+		else if (std::strstr(file.c_str(), ".geom"))		return GL_GEOMETRY_SHADER;
+		else if (std::strstr(file.c_str(), ".frag"))		return GL_FRAGMENT_SHADER;
+		else if (std::strstr(file.c_str(), ".comp"))		return GL_COMPUTE_SHADER;
 	}
 
 	std::string Shader::GetShaderString(const std::string& file)
@@ -169,13 +165,7 @@ namespace evolver
 				return stream.str();
 			}
 
-			std::string shaderString = LookForInclude(stream);
-
-			std::ofstream shaderFile(file);
-			shaderFile << shaderString;
-			shaderFile.close();
-
-			return shaderString;
+			return LookForInclude(stream);
 		}
 		catch (std::ifstream::failure e)
 		{

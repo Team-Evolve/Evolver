@@ -62,4 +62,9 @@ namespace evolver
 	{
 		return glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
 	}
+
+	float Camera::GetFOV()
+	{
+		return fov;
+	}
 }

@@ -21,13 +21,6 @@ namespace evolver
 		glm::vec3 bitangent;
 	};
 
-	struct TextureAttributes
-	{
-		unsigned int textureID;
-		std::string textureType;
-		aiString path;
-	};
-
 	class Mesh
 	{
 	public:

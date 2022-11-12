@@ -150,6 +150,7 @@
     <ClCompile Include="source\Mesh.cpp" />
     <ClCompile Include="source\Model.cpp" />
     <ClCompile Include="source\Shader.cpp" />
+    <ClCompile Include="source\ShapeFactory.cpp" />
     <ClCompile Include="source\Texture.cpp" />
     <ClCompile Include="source\Window.cpp" />
     <ClCompile Include="source\XMLManager.cpp" />
@@ -165,13 +166,13 @@
   <ItemGroup>
     <ClInclude Include="include\Buffer.h" />
     <ClInclude Include="include\Camera.h" />
-    <ClInclude Include="include\Compute.h" />
     <ClInclude Include="include\Debug.h" />
     <ClInclude Include="include\File.h" />
     <ClInclude Include="include\Helpers.h" />
     <ClInclude Include="include\Mesh.h" />
     <ClInclude Include="include\Model.h" />
     <ClInclude Include="include\Shader.h" />
+    <ClInclude Include="include\ShapeFactory.h" />
     <ClInclude Include="include\Texture.h" />
     <ClInclude Include="include\Window.h" />
     <ClInclude Include="include\XMLManager.h" />

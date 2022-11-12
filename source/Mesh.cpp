@@ -89,13 +89,12 @@ namespace evolver
 			vertexAttributes.clear();
 		}
 
-		if (size_indices != 0)
+		if (indices.size() != 0)
 		{
 			indices.clear();
 		}
 	
 		size_vertex = 0;
-		size_indices = 0;
 	}
 
 	/*

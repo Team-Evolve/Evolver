@@ -16,7 +16,8 @@ namespace evolver
 		void MouseInput(double xpos, double ypos);
 		void ScrollInput(double xoffset, double yoffset);
 
-		inline glm::mat4 GetViewMatrix();
+		glm::mat4 GetViewMatrix();
+		float GetFOV();
 
 	private:
 		bool firstMouse;

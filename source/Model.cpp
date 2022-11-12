@@ -4,28 +4,7 @@ namespace evolver
 {
 	Model::Model(std::string path)
 	{
-		/*
-		if (!std::filesystem::exists("models/cache"))
-		{
-			std::filesystem::create_directory("models/cache");
-		}
-
-		std::string filename = "models/cache/" + modelName;
-		
-
-		if (!CheckIfExists("models/cache", modelName.c_str()))
-		{
-			LoadModel(path);
-			SaveToCache(modelName);
-		}
-		else
-		{
-			LoadFromCache(modelName);
-		}
-		*/
 		LoadModel(path);
-
-		Cleanup();
 	}
 
 	void Model::Cleanup()
@@ -34,34 +13,6 @@ namespace evolver
 		{
 			meshes[i].Cleanup();
 		}
-	}
-
-	void Model::SaveToCache(std::string& modelName)
-	{
-		/*
-		if (meshes.size() == 0) return;
-
-		std::string vertexFilename;
-		std::string indexFilename;
-		std::ofstream out;
-
-		for (unsigned int i = 0; i < meshes.size(); i++)
-		{
-			vertexFilename = (modelName + "_vertex" + "_" + std::to_string(i)  + ".model");
-			indexFilename = (modelName + "_index" + "_" + std::to_string(i)  + ".model");
-
-			meshes[i].WriteVertexAttributes(vertexFilename);
-
-			out.open(indexFilename.c_str(), std::ios::binary);
-			out.write(meshes[i].GetIndexBufferString().c_str(), meshes[i].GetIndexBufferString().length());
-			out.close();
-		}
-		*/
-	}
-
-	void Model::LoadFromCache(std::string& modelName)
-	{
-
 	}
 
 	void Model::LoadModel(std::string& modelFile)

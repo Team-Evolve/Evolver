@@ -31,18 +31,10 @@ namespace evolver
 		void Draw();
 		void Cleanup();
 
-		/*
-		void WriteVertexAttributes(std::string& filename);
-		std::string GetIndexBufferString();
-		*/
+	private:
+		void SetupMesh(std::vector<VertexBufferAttributes>& vertexAttributes, std::vector<unsigned int>& indices);
 
 	private:
-		void SetupMesh();
-
-	private:
-		std::vector<VertexBufferAttributes> vertexAttributes;
-		std::vector<unsigned int> indices;
-
 		unsigned int size_vertex, size_indices;
 		unsigned int VAO, VBO, EBO;
 	};

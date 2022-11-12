@@ -1,6 +1,7 @@
 #include "include/Window.h"
 #include "include/Shader.h"
 #include "include/Camera.h"
+#include "include/Model.h"
 #include "include/ShapeFactory.h"
 
 const int WIDTH = 1280;
@@ -13,6 +14,7 @@ int main()
 	
 	evolver::Shader modelShader({ "shaders/model/model.vert", "shaders/model/model.frag" }, "model", true);
 	evolver::Camera camera(WIDTH, HEIGHT);
+	evolver::Model model("models/test/dragon.obj");
 	evolver::ShapeFactory shapeFactory;
 
 	LOG_INFO("Window Initialized");

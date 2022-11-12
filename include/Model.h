@@ -21,8 +21,6 @@ namespace evolver
 
 	private:
 		void Cleanup();
-		void SaveToCache(std::string& modelName);
-		void LoadFromCache(std::string& modelName);
 
 		void LoadModel(std::string& modelFile);
 		void ProcessNode(aiNode* node, const aiScene* scene);

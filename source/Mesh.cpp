@@ -5,46 +5,26 @@ namespace evolver
 	Mesh::Mesh(std::vector<VertexBufferAttributes>& vertAttr, std::vector<unsigned int>& index)
 	{
 		size_vertex = vertAttr.size();
-		vertexAttributes.resize(size_vertex);
-		memcpy(vertexAttributes.data(), vertAttr.data(), size_vertex * sizeof(VertexBufferAttributes));
-
 		size_indices = index.size();
-		indices.resize(size_indices);
-		memcpy(indices.data(), index.data(), size_indices * sizeof(unsigned int));
 
 		VAO = 0; VBO = 0; EBO = 0;
 
-		SetupMesh();
+		SetupMesh(vertAttr, index);
 	}
 
 	Mesh::~Mesh()
 	{
-		if (VAO)
-		{
-			glDeleteVertexArrays(1, &VAO);
-		}
-
-		if (VBO)
-		{
-			glDeleteBuffers(1, &VBO);
-		}
-
-		if (EBO)
-		{
-			glDeleteBuffers(1, &EBO);
-		}
+		Cleanup();
 	}
 
 	void Mesh::Draw()
 	{
-		if (VAO == 0) return;
-
 		glBindVertexArray(VAO);
 		glDrawElements(GL_TRIANGLES, size_indices, GL_UNSIGNED_INT, 0);
 		glBindVertexArray(0);
 	}
 
-	void Mesh::SetupMesh()
+	void Mesh::SetupMesh(std::vector<VertexBufferAttributes>& vertexAttributes, std::vector<unsigned int>& indices)
 	{
 		size_t sizeVertexAttributes = sizeof(VertexBufferAttributes);
 
@@ -84,49 +64,19 @@ namespace evolver
 
 	void Mesh::Cleanup()
 	{
-		if (size_vertex != 0)
+		if (VAO)
 		{
-			vertexAttributes.clear();
+			glDeleteVertexArrays(1, &VAO);
 		}
 
-		if (indices.size() != 0)
+		if (VBO)
 		{
-			indices.clear();
+			glDeleteBuffers(1, &VBO);
 		}
-	
-		size_vertex = 0;
+
+		if (EBO)
+		{
+			glDeleteBuffers(1, &EBO);
+		}
 	}
-
-	/*
-	void Mesh::WriteVertexAttributes(std::string& filename)
-	{
-		auto file = std::fstream(filename, std::ios::out | std::ios::binary);
-		std::string temp;
-		VertexBufferAttributes vertex;
-
-		for (unsigned int i = 0; i < size_vertex; i++)
-		{
-			vertex = vertexAttributes[i];
-
-			temp = (Vec3ToString(vertex.position) + " " + Vec3ToString(vertex.normal) + " " + Vec2ToString(vertex.textureCoordinates)
-				+ " " + Vec3ToString(vertex.tangent) + " " + Vec3ToString(vertex.bitangent) + "\n");
-
-			file.write(temp.c_str(), temp.length());
-		}
-
-		file.close();
-	}
-
-	std::string Mesh::GetIndexBufferString()
-	{
-		std::string temp;
-
-		for (unsigned int i = 0; i < size_indices; i++)
-		{
-			temp += std::to_string(indices[i]);
-		}
-
-		return temp;
-	}
-	*/
 }

@@ -5,6 +5,8 @@ Using OpenGL 4.6 Compatibility, C++20, Visual Studio 2022
 
 ## Updates
 ### TODO
+- [ ] Add Visual Test with compute shader
+- [ ] Create Math library and test with Catch2
 - [ ] Look for Compute class
 - [ ] Buffer class is written but has to be looked anyway.
 ### DONE

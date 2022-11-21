@@ -1,6 +1,8 @@
 #pragma once
 
-#include <glad/glad.h>
+#include <iostream>
+#include <map>
+#include "shapes/Cube.h"
 
 namespace evolver
 {
@@ -9,9 +11,10 @@ namespace evolver
 	public:
 		ShapeFactory();
 		~ShapeFactory();
-		void RenderCube();
 
+		void RenderCube();
+		
 	private:
-		unsigned int cubeVAO, cubeVBO;
+		std::map<const char*, Object> objects;
 	};
 }

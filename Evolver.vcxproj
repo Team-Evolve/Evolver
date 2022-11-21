@@ -146,6 +146,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="source\Buffer.cpp" />
     <ClCompile Include="source\Camera.cpp" />
+    <ClCompile Include="source\Cube.cpp" />
     <ClCompile Include="source\File.cpp" />
     <ClCompile Include="source\GUI.cpp" />
     <ClCompile Include="source\Mesh.cpp" />
@@ -173,8 +174,10 @@
     <ClInclude Include="include\Helpers.h" />
     <ClInclude Include="include\Mesh.h" />
     <ClInclude Include="include\Model.h" />
+    <ClInclude Include="include\Object.h" />
     <ClInclude Include="include\Shader.h" />
     <ClInclude Include="include\ShapeFactory.h" />
+    <ClInclude Include="include\shapes\Cube.h" />
     <ClInclude Include="include\Texture.h" />
     <ClInclude Include="include\Window.h" />
     <ClInclude Include="include\XMLManager.h" />

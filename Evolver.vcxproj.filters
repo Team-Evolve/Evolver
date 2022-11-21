@@ -84,6 +84,9 @@
     <ClCompile Include="source\GUI.cpp">
       <Filter>Source Files\Source</Filter>
     </ClCompile>
+    <ClCompile Include="source\Cube.cpp">
+      <Filter>Source Files\Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Buffer.h">
@@ -123,6 +126,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\GUI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Object.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\shapes\Cube.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

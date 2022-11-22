@@ -2,7 +2,7 @@
 #include "include/Shader.h"
 #include "include/Camera.h"
 #include "include/Model.h"
-#include "include/ShapeFactory.h"
+#include "include/ObjectManager.h"
 #include "include/GUI.h"
 
 const int WIDTH = 1280;
@@ -15,8 +15,8 @@ int main()
 	
 	evolver::Shader modelShader({ "shaders/model/model.vert", "shaders/model/model.frag" }, "model", true);
 	evolver::Camera camera(WIDTH, HEIGHT);
-	evolver::Model model("models/test/dragon.obj");
-	evolver::ShapeFactory shapeFactory;
+	// evolver::Model model("models/test/dragon.obj");
+	evolver::ObjectManager objectManager;
 	evolver::GUI gui(window.GetWindowPointer());
 
 	LOG_INFO("Window Initialized");
@@ -38,7 +38,7 @@ int main()
 		modelShader.SetMat4("model_matrix", model_matrix);
 		modelShader.SetMat4("view_matrix", camera.GetViewMatrix());
 		modelShader.SetMat4("proj_matrix", proj_matrix);
-		shapeFactory.RenderCube();
+		objectManager.RenderCube();
 		modelShader.Unload();
 
 		gui.StartFrame("Shader Editor");

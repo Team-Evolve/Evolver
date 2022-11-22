@@ -2,7 +2,7 @@
 
 namespace evolver
 {
-	Model::Model(std::string path)
+	Model::Model(std::string path) : Object()
 	{
 		LoadModel(path);
 	}
@@ -123,7 +123,7 @@ namespace evolver
 		Cleanup();
 	}
 
-	void Model::Draw()
+	void Model::Render()
 	{
 		for (unsigned int i = 0; i < meshes.size(); i++)
 		{

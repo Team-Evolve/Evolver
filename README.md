@@ -1,5 +1,5 @@
 # Evolver
-Evolver Engine
+Evolver Rendering Library
 
 Using OpenGL 4.6 Compatibility, C++20, Visual Studio 2022
 
@@ -7,9 +7,13 @@ Using OpenGL 4.6 Compatibility, C++20, Visual Studio 2022
 ### TODO
 - [ ] Add Visual Test with compute shader
 - [ ] Create Math library and test with Catch2
-- [ ] Look for Compute class
+- [ ] Create Texture base class and TextureManager class
+- [ ] Create Transform class
+- [ ] Create Timer class
 - [ ] Buffer class is written but has to be looked anyway.
 ### DONE
+- [x] Added Object base class and changed ShapeFactory to ObjectManager and Model inherits from Object
+- [x] Added GUI class
 - [x] Added include functionality for shaders
 - [x] Added Model class
 - [x] Added Shader Cache
@@ -23,4 +27,4 @@ Using OpenGL 4.6 Compatibility, C++20, Visual Studio 2022
 - [x] Camera class is completed.
 - [x] Window class is completed.
 ### NEED TO RESEARCH
-- [ ] Model cache is too slow.
+- [ ] Model cache is too slow. => Last thought : obj is compressed file I don't need to cache other values (I think). Going to search for it anyway.

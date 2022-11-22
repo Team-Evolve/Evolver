@@ -78,7 +78,7 @@
     <ClCompile Include="source\File.cpp">
       <Filter>Source Files\Source</Filter>
     </ClCompile>
-    <ClCompile Include="source\ShapeFactory.cpp">
+    <ClCompile Include="source\ObjectManager.cpp">
       <Filter>Source Files\Source</Filter>
     </ClCompile>
     <ClCompile Include="source\GUI.cpp">
@@ -122,7 +122,7 @@
     <ClInclude Include="include\Helpers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\ShapeFactory.h">
+    <ClInclude Include="include\ObjectManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\GUI.h">

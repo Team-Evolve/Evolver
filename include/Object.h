@@ -8,9 +8,12 @@ namespace evolver
 	class Object
 	{
 	public:
-		void Render() {};
-		void Cleanup() {};
+		Object() { VAO = 0; VBO = 0; };
 
+		virtual void Render() {};
+		virtual void Cleanup() {};
+
+	protected:
 		unsigned int VAO, VBO;
 	};
 }

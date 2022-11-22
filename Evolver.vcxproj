@@ -152,7 +152,7 @@
     <ClCompile Include="source\Mesh.cpp" />
     <ClCompile Include="source\Model.cpp" />
     <ClCompile Include="source\Shader.cpp" />
-    <ClCompile Include="source\ShapeFactory.cpp" />
+    <ClCompile Include="source\ObjectManager.cpp" />
     <ClCompile Include="source\Texture.cpp" />
     <ClCompile Include="source\Window.cpp" />
     <ClCompile Include="source\XMLManager.cpp" />
@@ -176,7 +176,7 @@
     <ClInclude Include="include\Model.h" />
     <ClInclude Include="include\Object.h" />
     <ClInclude Include="include\Shader.h" />
-    <ClInclude Include="include\ShapeFactory.h" />
+    <ClInclude Include="include\ObjectManager.h" />
     <ClInclude Include="include\shapes\Cube.h" />
     <ClInclude Include="include\Texture.h" />
     <ClInclude Include="include\Window.h" />

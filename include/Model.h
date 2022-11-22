@@ -2,12 +2,13 @@
 
 #include "Mesh.h"
 #include "Debug.h"
+#include "Object.h"
 #include <filesystem>
 #include <fstream>
 
 namespace evolver
 {
-	class Model
+	class Model : public Object
 	{
 	public:
 		Model() = delete;
@@ -17,11 +18,10 @@ namespace evolver
 		Model& operator=(Model other) = delete;
 		~Model();
 
-		void Draw();
-
-	private:
+		void Render();
 		void Cleanup();
 
+	private:
 		void LoadModel(std::string& modelFile);
 		void ProcessNode(aiNode* node, const aiScene* scene);
 		Mesh ProcessMesh(aiMesh* mesh, const aiScene* scene);

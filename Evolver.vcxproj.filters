@@ -134,5 +134,8 @@
     <ClInclude Include="include\shapes\Cube.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\Timer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

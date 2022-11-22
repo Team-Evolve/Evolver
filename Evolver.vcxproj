@@ -179,6 +179,7 @@
     <ClInclude Include="include\ObjectManager.h" />
     <ClInclude Include="include\shapes\Cube.h" />
     <ClInclude Include="include\Texture.h" />
+    <ClInclude Include="include\Timer.h" />
     <ClInclude Include="include\Window.h" />
     <ClInclude Include="include\XMLManager.h" />
   </ItemGroup>

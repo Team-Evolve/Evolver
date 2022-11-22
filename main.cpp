@@ -4,6 +4,7 @@
 #include "include/Model.h"
 #include "include/ObjectManager.h"
 #include "include/GUI.h"
+#include "include/Timer.h"
 
 const int WIDTH = 1280;
 const int HEIGHT = 720;
@@ -18,6 +19,7 @@ int main()
 	// evolver::Model model("models/test/dragon.obj");
 	evolver::ObjectManager objectManager;
 	evolver::GUI gui(window.GetWindowPointer());
+	evolver::Timer timer;
 
 	LOG_INFO("Window Initialized");
 
@@ -29,6 +31,8 @@ int main()
 
 	while (window.Loop())
 	{
+		timer.Update();
+
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -46,6 +50,10 @@ int main()
 		gui.EndFrame();
 
 		gui.Render();
+
+		// check if the object rendered
+		objectManager.UpdateTime(timer.GetMiliseconds());
+		objectManager.CheckObjectRenderTime(3.0, 60.0);
 
 		window.Swap();
 		window.PollEvents();

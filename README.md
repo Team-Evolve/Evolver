@@ -8,9 +8,9 @@ Using OpenGL 4.6 Compatibility, C++20, Visual Studio 2022
 - [ ] Add Visual Test with compute shader
 - [ ] Create Math library and test with Catch2
 - [ ] Create Texture base class and TextureManager class
-- [ ] Create Transform class
 - [ ] Buffer class is written but has to be looked anyway.
 ### DONE
+- [x] Create Transform class
 - [x] Create Timer class
 - [x] Add time limit for every object (? Is it effect performance if no is it necessary to this)
 - [x] Added Object base class and changed ShapeFactory to ObjectManager and Model inherits from Object

@@ -5,6 +5,7 @@
 #include "include/ObjectManager.h"
 #include "include/GUI.h"
 #include "include/Timer.h"
+#include "include/Transform.h"
 
 const int WIDTH = 1280;
 const int HEIGHT = 720;
@@ -20,12 +21,12 @@ int main()
 	evolver::ObjectManager objectManager;
 	evolver::GUI gui(window.GetWindowPointer());
 	evolver::Timer timer;
+	evolver::Transform transform;
 
 	LOG_INFO("Window Initialized");
 
-	glm::mat4 model_matrix = glm::mat4(1.0f);
-	model_matrix = glm::translate(model_matrix, glm::vec3(0.0f, 0.0f, 0.0f));
-	glm::mat4 proj_matrix = glm::perspective(glm::radians(camera.GetFOV()), (float)WIDTH / (float)HEIGHT, 0.1f, 1000.0f);
+	transform.Translate(glm::vec3(0.0f, 0.0f, 0.0f));
+	transform.SetProjMatrix(camera.GetFOV(), (float)WIDTH / (float)HEIGHT, 0.1f, 1000.0f);
 
 	glViewport(0, 0, WIDTH, HEIGHT);
 
@@ -39,9 +40,9 @@ int main()
 		gui.CreateNewFrame();
 
 		modelShader.Load();
-		modelShader.SetMat4("model_matrix", model_matrix);
+		modelShader.SetMat4("model_matrix", transform.GetModelMatrix());
 		modelShader.SetMat4("view_matrix", camera.GetViewMatrix());
-		modelShader.SetMat4("proj_matrix", proj_matrix);
+		modelShader.SetMat4("proj_matrix", transform.GetProjMatrix());
 		objectManager.RenderCube();
 		modelShader.Unload();
 

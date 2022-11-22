@@ -154,6 +154,7 @@
     <ClCompile Include="source\Shader.cpp" />
     <ClCompile Include="source\ObjectManager.cpp" />
     <ClCompile Include="source\Texture.cpp" />
+    <ClCompile Include="source\Transform.cpp" />
     <ClCompile Include="source\Window.cpp" />
     <ClCompile Include="source\XMLManager.cpp" />
     <ClCompile Include="third-party\glad\glad.c" />
@@ -180,6 +181,7 @@
     <ClInclude Include="include\shapes\Cube.h" />
     <ClInclude Include="include\Texture.h" />
     <ClInclude Include="include\Timer.h" />
+    <ClInclude Include="include\Transform.h" />
     <ClInclude Include="include\Window.h" />
     <ClInclude Include="include\XMLManager.h" />
   </ItemGroup>

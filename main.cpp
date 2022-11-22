@@ -6,20 +6,27 @@
 #include "include/GUI.h"
 #include "include/Timer.h"
 #include "include/Transform.h"
+#include "include/Input.h"
 
 const int WIDTH = 1280;
 const int HEIGHT = 720;
 
+evolver::Input input;
+
 void Key_Callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
-	if (key == GLFW_KEY_W && action == GLFW_PRESS)
-	{
-		std::cout << "W Key Pressed\n";
-	}
+	input.ExecuteKeys();
+}
+
+void wPressed()
+{
+	std::cout << "W Key Pressed\n";
 }
 
 int main()
 {
+	input.SetKeyAndAction(GLFW_KEY_W, wPressed);
+
 	evolver::Window window(WIDTH, HEIGHT);
 	window.SetKeyboardCallback(Key_Callback);
 	

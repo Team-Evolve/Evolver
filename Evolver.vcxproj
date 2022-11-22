@@ -149,6 +149,7 @@
     <ClCompile Include="source\Cube.cpp" />
     <ClCompile Include="source\File.cpp" />
     <ClCompile Include="source\GUI.cpp" />
+    <ClCompile Include="source\Input.cpp" />
     <ClCompile Include="source\Mesh.cpp" />
     <ClCompile Include="source\Model.cpp" />
     <ClCompile Include="source\Shader.cpp" />
@@ -173,6 +174,7 @@
     <ClInclude Include="include\File.h" />
     <ClInclude Include="include\GUI.h" />
     <ClInclude Include="include\Helpers.h" />
+    <ClInclude Include="include\Input.h" />
     <ClInclude Include="include\Mesh.h" />
     <ClInclude Include="include\Model.h" />
     <ClInclude Include="include\Object.h" />

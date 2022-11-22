@@ -3,6 +3,7 @@
 #include <stb-image/stb_image_write.h>
 #include "../include/Debug.h"
 #include <iostream>
+#include <functional>
 
 namespace evolver
 {
@@ -26,6 +27,9 @@ namespace evolver
 		GLFWwindow* GetWindowPointer();
 		void SetWindowPointer(GLFWwindow*);
 
+		void SetKeyboardCallback(GLFWkeyfun callback);
+
+	private:
 		void SetWindowAtCenter();
 
 	private:

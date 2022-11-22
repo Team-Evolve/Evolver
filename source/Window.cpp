@@ -1,13 +1,5 @@
 #include "../include/Window.h"
 
-void Key_Callback(GLFWwindow* window, int key, int scancode, int action, int mods)
-{
-	if (key == GLFW_KEY_W && action == GLFW_PRESS)
-	{
-		std::cout << "W Key Pressed\n";
-	}
-}
-
 namespace evolver
 {
 	Window::Window(int width, int height, int major, int minor, std::string windowName) :
@@ -47,7 +39,7 @@ namespace evolver
 			exit(EXIT_FAILURE);
 		}
 
-		glfwSetKeyCallback(window, Key_Callback);
+		SetWindowAtCenter();
 	}
 
 	Window::~Window()
@@ -168,6 +160,11 @@ namespace evolver
 	void Window::SetWindowPointer(GLFWwindow* window)
 	{
 		this->window = window;
+	}
+
+	void Window::SetKeyboardCallback(GLFWkeyfun callback)
+	{
+		glfwSetKeyCallback(window, callback);
 	}
 
 #if _DEBUG

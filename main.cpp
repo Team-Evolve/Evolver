@@ -10,10 +10,18 @@
 const int WIDTH = 1280;
 const int HEIGHT = 720;
 
+void Key_Callback(GLFWwindow* window, int key, int scancode, int action, int mods)
+{
+	if (key == GLFW_KEY_W && action == GLFW_PRESS)
+	{
+		std::cout << "W Key Pressed\n";
+	}
+}
+
 int main()
 {
 	evolver::Window window(WIDTH, HEIGHT);
-	window.SetWindowAtCenter();
+	window.SetKeyboardCallback(Key_Callback);
 	
 	evolver::Shader modelShader({ "shaders/model/model.vert", "shaders/model/model.frag" }, "model", true);
 	evolver::Camera camera(WIDTH, HEIGHT);

@@ -7,7 +7,6 @@ Using OpenGL 4.6 Compatibility, C++20, Visual Studio 2022
 ### TODO
 - [ ] Add Visual Test with compute shader
 - [ ] Create Math library and test with Catch2
-- [ ] Create Texture base class and TextureManager class
 - [ ] Buffer class is written but has to be looked anyway.
 ### DONE
 - [x] Added Input class
@@ -25,8 +24,8 @@ Using OpenGL 4.6 Compatibility, C++20, Visual Studio 2022
 - [x] Added XMLManager class (using pugixml)
 - [x] Added Path and File classes
 - [x] Shader class is completed.
-- [x] Texture class is completed.
+- [x] TextureManager class is completed.
 - [x] Camera class is completed.
 - [x] Window class is completed.
 ### NEED TO RESEARCH
-- [ ] Model cache is too slow. => Last thought : obj is compressed file I don't need to cache other values (I think). Going to search for it anyway.
+- [ ] Model cache is too slow. => Last thought : obj is compressed file I don't need to cache values (I think). Going to search it anyway.

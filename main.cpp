@@ -40,13 +40,18 @@ int main()
 
 	LOG_INFO("Window Initialized");
 
-	transform.Translate(glm::vec3(0.0f, 0.0f, 0.0f));
+	glm::vec3 pos = { 0.0f, 0.0f, 0.0f };
 	transform.SetProjMatrix(camera.GetFOV(), (float)WIDTH / (float)HEIGHT, 0.1f, 1000.0f);
 
 	glViewport(0, 0, WIDTH, HEIGHT);
 
+	evolver::Transform::ModelMatrixVariables modelMatrixVariables;
+	modelMatrixVariables.position = pos;
+
 	while (window.Loop())
 	{
+		transform.CalculateModelMatrix(modelMatrixVariables);
+
 		timer.Update();
 
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
@@ -62,14 +67,16 @@ int main()
 		modelShader.Unload();
 
 		gui.StartFrame("Shader Editor");
-		gui.SetText("Hello World");
+		gui.SetSliderFloat3("Position", modelMatrixVariables.position, -10.0f, 10.0f);
 		gui.EndFrame();
 
 		gui.Render();
 
+		/*
 		// check if the object rendered
 		objectManager.UpdateTime(timer.GetMiliseconds());
 		objectManager.CheckObjectRenderTime(3.0, 60.0);
+		*/
 
 		window.Swap();
 		window.PollEvents();

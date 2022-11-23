@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <map>
+#include "Transform.h"
 #include "shapes/Cube.h"
 
 namespace evolver
@@ -15,8 +16,10 @@ namespace evolver
 		void AddObject(const char* name, Object* object);
 		void RenderObject(const char* name);
 		void RenderCube();
+		/*
 		void UpdateTime(double elapsedTime) { time += elapsedTime; }
 		void CheckObjectRenderTime(double checkTime, double targetFPS);
+		*/
 		
 	private:
 		struct ObjectRecord
@@ -24,15 +27,15 @@ namespace evolver
 			ObjectRecord()
 			{
 				object = nullptr;
-				renderTime = 0;
+				// renderTime = 0;
 			}
 
 			Object* object;
-			unsigned int renderTime;
+			// unsigned int renderTime;
 		};
 
 		Cube cube;
 		std::map<const char*, ObjectRecord> objects;
-		double time;
+		// double time;
 	};
 }

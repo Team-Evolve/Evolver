@@ -8,13 +8,33 @@ namespace evolver
 	class Transform
 	{
 	public:
+		struct ModelMatrixVariables
+		{
+			ModelMatrixVariables()
+			{
+				position = glm::vec3(0.0f, 0.0f, 0.0f);
+				for (int i = 0; i < 3; i++)
+				{
+					rotations[i] = glm::vec3(0.0f, 0.0f, 0.0f);
+					angles[i] = 0.0f;
+					scales[i] = glm::vec3(1.0f, 1.0f, 1.0f);
+				}
+			}
+
+			glm::vec3 position;
+			glm::vec3 rotations[3];
+			float angles[3];
+			glm::vec3 scales[3];
+		};
+
+	public:
 		Transform();
 		~Transform() = default;
 
-		void Translate(glm::vec3 position);
-		void Translate(float* position);
+		void CalculateModelMatrix(ModelMatrixVariables& variables);
+		
 		void SetProjMatrix(float fov, float aspect, float near, float far);
-
+		
 		inline void SetViewMatrix(glm::mat4 view) { viewMatrix = view; }
 		inline glm::mat4 GetModelMatrix() const { return modelMatrix; }
 		inline glm::mat4 GetViewMatrix() const { return viewMatrix; }

@@ -20,6 +20,8 @@ namespace evolver
 
 		void StartFrame(const char* frameName);
 		void SetSliderFloat(const char* variableName, float& variable, float minValue, float maxValue);
+		void SetSliderFloat3(const char* variableName, glm::vec3& variable, float minValue, float maxValue);
+		void SetSliderFloat3(const char* variableName, float* variable, float minValue, float maxValue);
 		void SetRGB(const char* variableName, glm::vec3& variable);
 		void SetRGB(const char* variableName, float* variable);
 		void SetImage(unsigned int variable, unsigned int width, unsigned int height);

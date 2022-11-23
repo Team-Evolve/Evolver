@@ -43,11 +43,27 @@ namespace evolver
 		ImGui::SliderFloat(variableName, &variable, minValue, maxValue);
 	}
 
+	void GUI::SetSliderFloat3(const char* variableName, glm::vec3& variable, float minValue, float maxValue)
+	{
+		float temp[3] = { variable.x, variable.y, variable.z };
+
+		ImGui::SliderFloat3(variableName, temp, minValue, maxValue);
+	
+		variable = glm::vec3(temp[0], temp[1], temp[2]);
+	}
+
+	void GUI::SetSliderFloat3(const char* variableName, float* variable, float minValue, float maxValue)
+	{
+		ImGui::SliderFloat3(variableName, variable, minValue, maxValue);
+	}
+
 	void GUI::SetRGB(const char* variableName, glm::vec3& variable)
 	{
 		float temp[3] = { variable.x, variable.y, variable.z };
 
 		ImGui::ColorEdit3(variableName, temp);
+
+		variable = glm::vec3(temp[0], temp[1], temp[2]);
 	}
 
 	void GUI::SetRGB(const char* variableName, float* variable)

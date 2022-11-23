@@ -4,7 +4,7 @@ namespace evolver
 {
 	ObjectManager::ObjectManager()
 	{
-		time = 0.0;
+		// time = 0.0;
 
 		ObjectRecord cubeObjectRecord;
 		cubeObjectRecord.object = &cube;
@@ -34,7 +34,7 @@ namespace evolver
 		{
 			Object* pObject = (object->second).object;
 			pObject->Render();
-			(object->second).renderTime += 1;
+			// (object->second).renderTime += 1;
 		}
 	}
 
@@ -44,10 +44,11 @@ namespace evolver
 		{
 			Object* pObject = (object->second).object;
 			pObject->Render();
-			(object->second).renderTime += 1;
+			// (object->second).renderTime += 1;
 		}
 	}
 
+	/*
 	void ObjectManager::CheckObjectRenderTime(double checkTime, double targetFPS)
 	{
 		if (time < checkTime) return;
@@ -68,4 +69,5 @@ namespace evolver
 			}
 		}
 	}
+	*/
 }

@@ -154,7 +154,7 @@
     <ClCompile Include="source\Model.cpp" />
     <ClCompile Include="source\Shader.cpp" />
     <ClCompile Include="source\ObjectManager.cpp" />
-    <ClCompile Include="source\Texture.cpp" />
+    <ClCompile Include="source\TextureManager.cpp" />
     <ClCompile Include="source\Transform.cpp" />
     <ClCompile Include="source\Window.cpp" />
     <ClCompile Include="source\XMLManager.cpp" />
@@ -181,7 +181,7 @@
     <ClInclude Include="include\Shader.h" />
     <ClInclude Include="include\ObjectManager.h" />
     <ClInclude Include="include\shapes\Cube.h" />
-    <ClInclude Include="include\Texture.h" />
+    <ClInclude Include="include\TextureManager.h" />
     <ClInclude Include="include\Timer.h" />
     <ClInclude Include="include\Transform.h" />
     <ClInclude Include="include\Window.h" />

@@ -57,14 +57,18 @@ int main()
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		gui.CreateNewFrame();
-
 		modelShader.Load();
 		modelShader.SetMat4("model_matrix", transform.GetModelMatrix());
 		modelShader.SetMat4("view_matrix", camera.GetViewMatrix());
 		modelShader.SetMat4("proj_matrix", transform.GetProjMatrix());
 		objectManager.RenderCube();
 		modelShader.Unload();
+
+		// ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		// GUI SIDE
+		// ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		gui.CreateNewFrame();
 
 		gui.StartFrame("Shader Editor");
 		gui.SetSliderFloat3("Position", modelMatrixVariables.position, -10.0f, 10.0f);

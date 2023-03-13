@@ -99,6 +99,9 @@
     <ClCompile Include="source\Input.cpp">
       <Filter>Source Files\Source</Filter>
     </ClCompile>
+    <ClCompile Include="source\Sampler.cpp">
+      <Filter>Source Files\Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Buffer.h">
@@ -153,6 +156,9 @@
       <Filter>Header Files\Objects</Filter>
     </ClInclude>
     <ClInclude Include="include\TextureManager.h">
+      <Filter>Header Files\Textures</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sampler.h">
       <Filter>Header Files\Textures</Filter>
     </ClInclude>
   </ItemGroup>

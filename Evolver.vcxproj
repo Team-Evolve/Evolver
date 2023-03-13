@@ -152,6 +152,7 @@
     <ClCompile Include="source\Input.cpp" />
     <ClCompile Include="source\Mesh.cpp" />
     <ClCompile Include="source\Model.cpp" />
+    <ClCompile Include="source\Sampler.cpp" />
     <ClCompile Include="source\Shader.cpp" />
     <ClCompile Include="source\ObjectManager.cpp" />
     <ClCompile Include="source\TextureManager.cpp" />
@@ -178,6 +179,7 @@
     <ClInclude Include="include\Mesh.h" />
     <ClInclude Include="include\Model.h" />
     <ClInclude Include="include\Object.h" />
+    <ClInclude Include="include\Sampler.h" />
     <ClInclude Include="include\Shader.h" />
     <ClInclude Include="include\ObjectManager.h" />
     <ClInclude Include="include\shapes\Cube.h" />
